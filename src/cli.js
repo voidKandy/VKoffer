@@ -11,25 +11,23 @@ function parseArguments(args) {
   // console.log(args);
   const operation = {
     command: args[0],
-    arg: undefined
+    arg1: args[1] || undefined,
+    arg2: args[2] || undefined
   };
-  if (args.length > 1) {
-    console.log(args[1])
-    operation.arg = args[1];
-  }
+ 
   return operation
 }
 
 export function cli(args) {
   const operation = parseArguments(args); 
   
-  // Query passwords
+  // Query passwords 
   if (operation.command === 'q') {
-    query(operation.arg);
+    query(operation.arg1);
   }
   // Import password.csv
   else if (operation.command === 'import') {
-    load_csv(operation.arg);
+    load_csv(operation.arg1);
   }
   // Manually add data to json
   else if (operation.command === 'add') {
