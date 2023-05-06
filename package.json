@@ -10,7 +10,6 @@
   "license": "ISC",
   "keywords": [],
   "dependencies": {
-    "chalk": "^5.2.0",
     "esm": "^3.2.25"
   },
   "bin": {
