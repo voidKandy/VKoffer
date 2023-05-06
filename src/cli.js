@@ -1,4 +1,4 @@
-import { query } from './scripts/query.js';
+import { queryPasswords } from './scripts/queryPasswords.js';
 import { load_csv } from './scripts/csvToJson.js';
 import writeToKeys from './scripts/writeToKeys.js';
 import writeToJson from './scripts/writeToJson.js';
@@ -21,9 +21,9 @@ function parseArguments(args) {
 export function cli(args) {
   const operation = parseArguments(args); 
   
-  // Query passwords 
+  // query passwords 
   if (operation.command === 'q') {
-    query(operation.arg1);
+    queryPasswords(operation.arg1);
   }
   // Import password.csv
   else if (operation.command === 'import') {
