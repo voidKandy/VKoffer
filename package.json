@@ -1,0 +1,19 @@
+{
+  "name": "vk_password_manager",
+  "version": "1.0.0",
+  "description": "A password manager in the command line!",
+  "main": "index.js",
+  "scripts": {
+    "query": "npx tsc scripts/query.ts"
+  },
+  "author": "Void Kandy",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "esm": "^3.2.25"
+  },
+  "bin": {
+    "voffer": "./index.js"
+  }
+}

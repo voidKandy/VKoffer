@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-function csv_to_json(csv_path:string, json_path:string) {
+function csv_to_json(csv_path, json_path) {
   
   const csv_content = fs.readFileSync(csv_path, 'utf8');
 
@@ -25,16 +25,15 @@ function csv_to_json(csv_path:string, json_path:string) {
   });
 
   fs.writeFileSync(json_path, JSON.stringify(data, null, 2));
-
-  console.log(`------------------------------------------------------------------------------------------------------------------------\nWrote file from ${csv_path} to ${json_path}\n------------------------------------------------------------------------------------------------------------------------`)
+  
+  console.log(`-------------------------------------------------------------------------------------------------------------------\nWrote file from ${csv_path} to ${json_path}\n-------------------------------------------------------------------------------------------------------------------`)
 
 }
 
-// const passwords_csv = './src/passwords/Passwords.csv';
-function main(passwords_csv?: string) {
+function load_csv(passwords_csv) {
 
   if (passwords_csv === undefined) {
-    console.error('Please provide a path to your passwords.csv file.\nUsage: npm run csv_to_json -- path/to/csv\n')
+    console.error('Please provide a path to your passwords.csv file.\nUsage: vk_pass load_csv -- path/to/csv\n')
     return;
  }
 
@@ -43,5 +42,6 @@ function main(passwords_csv?: string) {
   csv_to_json(passwords_csv, passwords_json);
 }
 
-main(process.argv[2]);
+
+export { load_csv };
 
