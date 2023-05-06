@@ -21,3 +21,10 @@ As of right now there are 5 commands:
 3. `add` to manually add data
 4. `remove` to manually remove data by user (WIP)
 5. `+key` to add to the special keys.json (More API key features coming soon)
+
+
+## Planned features
+* Password generator
+* API key favorites quick access
+* More in depth removal
+* Get on command line package manager 🤓
