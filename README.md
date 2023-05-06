@@ -8,7 +8,8 @@ As of right now, the copy to clipboard functionality only works on Mac or Linux.
 ## Getting Started
 After cloning the repo, cd into it and run:
 `npm i -g`
-You now have access to `vkoffer`
+
+You now have access to ***vkoffer***!
 
 If you use google chrome, export a Passwords.csv file to use any passwords chrome has already stored for you.
 run `vkoffer import <path-to-csv>` to read all you data into a json
