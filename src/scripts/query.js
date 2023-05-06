@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { copyToClipboard } from './clipboard_copy.js';
+import { copyToClipboard } from './clipboardCopy.js';
 import { promptUser } from './promptUser.js';
 
 class Prompt {
@@ -34,11 +34,10 @@ class Prompt {
   }
 }
 
-async function query() {
+async function query(website) {
   const data_json = JSON.parse(fs.readFileSync('./src/passwords/passwords.json', 'utf8'));
   const passwords = data_json.map(d => d.website);
 
-  const website = await promptUser('Enter a website: ');
   const prompt = new Prompt();
   const selectedPassword = await prompt.select(website, data_json);
   if (selectedPassword) {
