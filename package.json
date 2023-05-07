@@ -1,11 +1,8 @@
 {
-  "name": "vk_password_manager",
+  "name": "VKoffer",
   "version": "1.0.0",
   "description": "A password manager in the command line!",
   "main": "index.js",
-  "scripts": {
-    "query": "npx tsc scripts/query.ts"
-  },
   "author": "Void Kandy",
   "license": "ISC",
   "keywords": [],

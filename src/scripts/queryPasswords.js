@@ -34,7 +34,7 @@ class Prompt {
   }
 }
 
-async function query(website) {
+async function queryPasswords(website) {
   const data_json = JSON.parse(fs.readFileSync('./src/passwords/passwords.json', 'utf8'));
   const passwords = data_json.map(d => d.website);
 
@@ -46,4 +46,4 @@ async function query(website) {
   }
 }
 
-export { query };
+export { queryPasswords };

@@ -8,7 +8,7 @@ import { promptUser } from './scripts/promptUser.js';
 
 function parseArguments(args) {
   args.splice(0, 2);
-  // console.log(args);
+  
   const operation = {
     command: args[0],
     arg1: args[1] || undefined,
