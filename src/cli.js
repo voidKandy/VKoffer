@@ -3,8 +3,7 @@ import { load_csv } from './scripts/csvToJson.js';
 import writeToKeys from './scripts/writeToKeys.js';
 import writeToJson from './scripts/writeToJson.js';
 import removeFromJson from './scripts/removeFromJson.js';
-import { promptUser } from './scripts/promptUser.js';
-
+import { Converse } from './scripts/Converse.js';
 
 function parseArguments(args) {
   args.splice(0, 2);
@@ -40,6 +39,10 @@ export function cli(args) {
   // Add to special keys json
   else if (operation.command === '+key') {
     writeToKeys(); 
+  }
+  // start conversation
+  else if (operation.command === 'convo') {
+    Converse(operation.arg1);
   }
   // console.log(operation);
 }

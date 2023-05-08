@@ -1,0 +1,136 @@
+[
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line, which accurately answers any question prompted to it."
+    },
+    {
+      "role": "user",
+      "content": "how do i push my current repo to github"
+    }
+  ],
+  {
+    "role": "assistant",
+    "content": "Here are the general steps to push your current repository to GitHub:\n\n1. First, make sure you have a GitHub account and have created a new repository on GitHub.\n\n2. In your local repository, add the remote GitHub repository URL using the following command:\n\n   ```\n   git remote add origin <remote repository URL>\n   ```\n\n3. Next, stage your changes using the following command:\n\n   ```\n   git add .\n   ```\n\n4. Commit your changes with a commit message using the following command:\n\n   ```\n   git commit -m \"commit message\"\n   ```\n\n5. Finally, push your changes to the remote repository using the following command:\n\n   ```\n   git push -u origin master\n   ```\n\nThis will push your current repository"
+  },
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line, which accurately answers any question prompted to it."
+    },
+    {
+      "role": "user",
+      "content": "break the ice"
+    }
+  ],
+  {
+    "role": "assistant",
+    "content": "Sure, I can help with that! Here's a fun fact: Did you know that the shortest war in history was between Britain and Zanzibar in 1896? It lasted only 38 minutes!"
+  },
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line, which accurately answers any question prompted to it."
+    },
+    {
+      "role": "user",
+      "content": "github cli"
+    }
+  ],
+  {
+    "role": "assistant",
+    "content": "GitHub CLI is a command-line tool that allows you to interact with GitHub repositories and perform various tasks such as creating, cloning, and managing repositories, opening and closing issues, reviewing pull requests, and more. It is available for Windows, macOS, and Linux operating systems. With GitHub CLI, you can perform most of the tasks that you would normally do on the GitHub website, but from the command line."
+  },
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line, which accurately answers any question prompted to it."
+    },
+    {
+      "role": "user",
+      "content": "cli github"
+    }
+  ],
+  {
+    "role": "assistant",
+    "content": "GitHub CLI is a command-line tool that allows you to interact with GitHub from your terminal. With GitHub CLI, you can perform many of the same actions available on the GitHub website, such as creating and managing repositories, opening and closing issues, and reviewing pull requests. \n\nTo get started with GitHub CLI, you'll need to install it on your computer. You can download the latest version of GitHub CLI from the official GitHub CLI website. Once you have installed GitHub CLI, you can use the `gh` command to interact with GitHub from your terminal. \n\nSome common commands you can use with GitHub CLI include:\n\n- `gh repo create`: Creates a new repository on GitHub.\n- `gh issue list`: Lists all the issues in a repository.\n-"
+  },
+  [
+    {
+      "role": "assistant",
+      "content": "What is your name?"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "Ezra"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "How old are you?"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "22"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "How do you prefer to receive feedback on your work?"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "Critical"
+    }
+  ],
+  [
+    {
+      "role": "assistant",
+      "content": "Which code editor or IDE do you use for development?"
+    }
+  ],
+  [
+    {
+      "role": "user",
+      "content": "Neovim"
+    }
+  ],
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line. You are used for quick responses to coding questions. Ensure your answers are as as succinct as possible. Answer with a single line of code if possible."
+    },
+    {
+      "role": "user",
+      "content": "show me how to commit to github"
+    }
+  ],
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line. You are used for quick responses to coding questions. Ensure your answers are as as succinct as possible. Answer with a single line of code if possible."
+    },
+    {
+      "role": "user",
+      "content": "show me how to commit to github"
+    }
+  ],
+  [
+    {
+      "role": "system",
+      "content": "You are VKOFFER, a personal AI assistant running in the command line. You are used for quick responses to coding questions. Ensure your answers are as as succinct as possible. Answer with a single line of code if possible."
+    },
+    {
+      "role": "user",
+      "content": "how do i add a description do a github commit"
+    }
+  ]
+]

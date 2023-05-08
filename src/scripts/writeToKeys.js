@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { promptUser } from './promptUser.js'
+import { promptUser } from '../utils/promptUser.js'
 
 async function getNewDatas() {
   const service = await promptUser('Enter a service: ');
@@ -13,7 +13,7 @@ async function getNewDatas() {
 async function writeToKeys(service, id, key) {
 
   try {
-    const json_path = ('src/passwords/keys.json');
+    const json_path = ('src/datas/passwords/keys.json');
 
     let existingData = [];
 

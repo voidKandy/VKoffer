@@ -7,7 +7,9 @@
   "license": "ISC",
   "keywords": [],
   "dependencies": {
-    "esm": "^3.2.25"
+    "dotenv": "^16.0.3",
+    "esm": "^3.2.25",
+    "openai": "^3.2.1"
   },
   "bin": {
     "vkoffer": "./index.js"

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { copyToClipboard } from './clipboardCopy.js';
-import { promptUser } from './promptUser.js';
+import { copyToClipboard } from '../utils/clipboardCopy.js';
+import { promptUser } from '../utils/promptUser.js';
 
 class Prompt {
   async select(website, data) {
@@ -35,7 +35,7 @@ class Prompt {
 }
 
 async function queryPasswords(website) {
-  const data_json = JSON.parse(fs.readFileSync('./src/passwords/passwords.json', 'utf8'));
+  const data_json = JSON.parse(fs.readFileSync('src/datas/passwords/passwords.json', 'utf8'));
   const passwords = data_json.map(d => d.website);
 
   const prompt = new Prompt();

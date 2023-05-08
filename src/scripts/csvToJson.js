@@ -37,7 +37,7 @@ function load_csv(passwords_csv) {
     return;
  }
 
-  const passwords_json = './src/passwords/passwords.json'
+  const passwords_json = './src/datas/passwords/passwords.json'
 
   csv_to_json(passwords_csv, passwords_json);
 }

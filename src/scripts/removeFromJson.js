@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { promptUser } from './promptUser.js';
+import { promptUser } from '../utils/promptUser.js';
 
 async function getUser() {
   const user = await promptUser('Enter a user: ');
@@ -8,7 +8,7 @@ async function getUser() {
 
 async function removeFromJson(user) {
   try {
-    const json_path = 'src/passwords/passwords.json';
+    const json_path = 'src/datas/passwords/passwords.json';
     const fileContents = fs.readFileSync(json_path, 'utf8');
     const existingData = JSON.parse(fileContents);
 
