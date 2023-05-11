@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
-require('dotenv').config();
 require = require('esm')(module);
+require('dotenv').config();
 
 const cli = require('./src/cli.js');
 

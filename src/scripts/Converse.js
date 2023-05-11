@@ -2,53 +2,14 @@ import * as fs from 'fs';
 import { promptUser } from '../utils/promptUser.js';
 import { Configuration, OpenAIApi } from 'openai';
 import { createCompletion } from '../ai-utils/createCompletion.js';
-
-
-// path to conversation
-const json_path = 'src/datas/user_messages.json';
+import { loadConversation, pushToConversation } from "../utils/convoLogging.js";
+import { centerPrint } from "../utils/formatPrints.js";
 
 const system_prompts_path = 'src/ai-utils/system_prompts.json';
 const sys_prompts = JSON.parse(
   fs.readFileSync(system_prompts_path, "utf8")
 );
 
-function loadConversation() {
- 
-  if (!fs.existsSync(json_path)) {
-    try {
-      fs.writeFileSync(json_path, '[]');
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const existingData = JSON.parse(
-    fs.readFileSync(json_path, "utf8")
-  );
-
-  return existingData;
-};
-
-function pushToConversation(content, role=null) {
-    
-  const existingData = loadConversation();
-  
-  if (role === null) {
-    existingData.push(content);
-  } 
-  else {
-    existingData.push([
-      {
-        role: role,
-        content: content
-      }
-    ]);
-  }
-
-  
-  fs.writeFileSync(json_path, JSON.stringify(existingData, null, 2));
-
-};
 
 async function breakIce() {
   const icebreaker_path = 'src/datas/icebreakers.txt';
@@ -66,30 +27,46 @@ async function breakIce() {
   }
 };
 
+async function Conversation(sys_prmpt=null, response) {
 
-async function Converse(sys_prmpt) {
+  let full_prompt = []; 
 
-  const system_prompt = sys_prompts[sys_prmpt]
+  let system_prompt;
+  if (!sys_prmpt) {
+    system_prompt = sys_prompts['succinct_code']
+  } else {
+    system_prompt = sys_prompts[sys_prmpt]
+  }
 
-  const init_response = await promptUser(
-    "--------------------------------\n| LANGUAGE INTERFACE INITIATED |\n--------------------------------\n"
-  );
-  
-  const request_json = {
+  const user_prompt = {
     role: "user",
-    content: init_response
+    content: response
   };
 
-  system_prompt.push(request_json);
+  full_prompt.push(system_prompt);
+  full_prompt.push(user_prompt);
 
-  if (init_response === "break the ice") {
-    await breakIce();
-  } 
-  else {
+  return full_prompt;
+}
 
-    const response = await createCompletion(system_prompt);
-    console.log(response.content);
-    pushToConversation(system_prompt);
+async function Converse(sys_prmpt=null) {
+  console.clear();
+  console.log("\n\n");
+  centerPrint("+------------------------------+");
+  centerPrint("| LANGUAGE INTERFACE INITIATED |");
+  centerPrint("+------------------------------+");
+  console.log("\n\n");
+
+  let conversationActive = true;
+
+  while (conversationActive) {
+    let user_response = await promptUser("");
+    if (user_response.toLowerCase() === "bye") {
+      conversationActive = false;
+    }
+    let full_prompt = await Conversation(sys_prmpt, user_response);
+    let response = await createCompletion(full_prompt);
+    centerPrint(`${response.content}`);
   }
 
 }

@@ -1,5 +1,6 @@
 const readline = require('readline');
 
+
 function promptUser(question) {
   const interface = readline.createInterface({
     input: process.stdin,
