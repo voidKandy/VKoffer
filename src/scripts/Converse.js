@@ -4,6 +4,7 @@ import { Configuration, OpenAIApi } from 'openai';
 import { createCompletion } from '../ai-utils/createCompletion.js';
 import { loadConversation, pushToConversation } from "../utils/convoLogging.js";
 import { centerPrint } from "../utils/formatPrints.js";
+import { exec } from 'child_process';
 
 const system_prompts_path = 'src/ai-utils/system_prompts.json';
 const sys_prompts = JSON.parse(
@@ -64,9 +65,23 @@ async function Converse(sys_prmpt=null) {
     if (user_response.toLowerCase() === "bye") {
       conversationActive = false;
     }
-    let full_prompt = await Conversation(sys_prmpt, user_response);
-    let response = await createCompletion(full_prompt);
-    centerPrint(`${response.content}`);
+    // Make terminal commands from interface
+    else if (user_response[0] === "!") {
+      exec(user_response.substring(1, user_response.length), (error, stdout, stderr) => {
+        if (error) {
+          console.log(`Error: ${error.message}`);
+        } 
+        if (stderr) {
+          console.log(`stderr: ${stderr}`);
+        }
+        console.log(stdout);
+      });
+    } 
+    else {
+      let full_prompt = await Conversation(sys_prmpt, user_response);
+      let response = await createCompletion(full_prompt);
+      centerPrint(`${response.content}`);
+    }
   }
 
 }
