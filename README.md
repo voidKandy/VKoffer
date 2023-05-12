@@ -16,6 +16,7 @@ Create a `.env` file and define you api key as `OPEN_AI_API_KEY`
 
 ## Language interface
 To open the language interface run `vkoffer lui`
+
 run terminal commands from the lui by prepending anything with `!`
 
 ## Adding password data and interacting with passwords
