@@ -22,7 +22,7 @@ run terminal commands from the lui by prepending anything with `!`
 ## Adding password data and interacting with passwords
 If you use google chrome, export a Passwords.csv file to use any passwords chrome has already stored for you.
 
-All keys and passwords are saved encrypted in .jsons
+All keys and passwords are saved encrypted in .jsons, make sure to create an `ENCRYPTION_KEY` in `.env`
 
 `vkoffer import <path-to-csv>` will read all you data into a json
 
