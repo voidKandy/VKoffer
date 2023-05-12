@@ -3,6 +3,10 @@
 # passwords
 /src/datas/passwords
 
+# user convo
+/src/datas/user_messages.json
+
+
 # dependencies
 /node_modules
 /.pnp
@@ -21,6 +25,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+
+
 
 npm-debug.log*
 yarn-debug.log*
