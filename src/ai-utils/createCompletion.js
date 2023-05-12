@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
-import { pushToConversation } from '../utils/convoLogging.js';
+import { pushToConversation } from '../ai-utils/convoLogging.js';
 
 const apiKey = process.env.OPEN_AI_API_KEY;
 

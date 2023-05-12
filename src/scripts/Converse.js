@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import { promptUser } from '../utils/promptUser.js';
 import { Configuration, OpenAIApi } from 'openai';
 import { createCompletion } from '../ai-utils/createCompletion.js';
-import { loadConversation, pushToConversation } from "../utils/convoLogging.js";
+import { loadConversation, pushToConversation } from "../ai-utils/convoLogging.js";
 import { centerPrint } from "../utils/formatPrints.js";
 import { exec } from 'child_process';
 

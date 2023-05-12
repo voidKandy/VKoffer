@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { copyToClipboard } from '../utils/clipboardCopy.js';
 import { promptUser } from '../utils/promptUser.js';
-
+import { encrypt, decrypt } from '../utils/crypto.js';
 
 
 class Prompt {
@@ -53,7 +53,7 @@ async function queryPasswords(keyName, data=null) {
   const selectedPassword = await prompt.select(keyName, data_json);
   if (selectedPassword) {
     console.log(`Selected Password for: ${selectedPassword[Object.keys(data_json[0])[1]]}`);
-    copyToClipboard(selectedPassword[Object.keys(data_json[0])[2]]);
+    copyToClipboard(decrypt(selectedPassword[Object.keys(data_json[0])[2]]));
   }
 };
 
