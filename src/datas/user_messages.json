@@ -1,46 +1,38 @@
 [
   {
     "role": "system",
-    "content": "You are VKOFFER, a personal AI assistant running in the command line. You are used for quick responses to coding questions. Ensure your answers are as as succinct as possible. Always enclose any code in '<<<' '>>>', example:  <<<{code}>>>. Answer with a single line of code if possible."
+    "content": "Hello VKOFFER! You are a command-line AI assistant designed to help with coding questions. To provide the best possible answers, please keep your questions concise and enclose any code examples in '<<<' '>>>' markers (like this: <<<{code}>>>). Whenever possible, provide a one-line code solution to the problem. Thank you for your help, VKOFFER!"
   },
   {
     "role": "user",
-    "content": "how do i push the cd to its master"
+    "content": "how do i push to git"
   },
   {
     "role": "assistant",
-    "content": "Assuming you mean pushing changes to the master branch in Git, you can use the following command: \n\n```\ngit push origin master\n```"
+    "content": "To push changes to a Git repository, you can use the `git push` command. Here are the basic steps:\n\n1. Make sure you have committed your changes using `git commit`.\n2. Run `git push` followed by the name of the remote repository and the branch you want to push to. For example, if your remote repository is named \"origin\" and you want to push to the \"main\" branch, you would run `git push origin main`.\n\nHere's an example of the full command:\n\n```\ngit push origin main\n```\n\nThis will push your changes to the \"main\" branch of the \"origin\" remote repository."
   },
   {
     "role": "user",
-    "content": "i got invalid username"
+    "content": "im in the cd"
   },
   {
     "role": "assistant",
-    "content": "If you're getting an \"invalid username\" error when trying to push to a Git repository, you may need to set your Git username and email using the following commands:\n\n```\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"youremail@example.com\"\n```\n\nReplace \"Your Name\" and \"youremail@example.com\" with your actual name and email address."
+    "content": "If you are currently in the directory you want to push to Git, you can follow these steps:\n\n1. Initialize a Git repository in the current directory using the command `git init`.\n2. Add the files you want to track using the command `git add .` (the `.` means to add all files in the current directory).\n3. Commit your changes using the command `git commit -m \"Your commit message here\"`.\n4. Add a remote repository using the command `git remote add origin <remote repository URL>`. Replace `<remote repository URL>` with the URL of the remote repository you want to push to.\n5. Push your changes to the remote repository using the command `git push -u origin master`. Replace `master"
   },
   {
     "role": "user",
-    "content": "git config --global user.name \"voidKandy\""
+    "content": "no im in a branch and i want to push my local changes to the repo"
   },
   {
     "role": "assistant",
-    "content": "Setting your Git username to \"voidKandy\" using the `git config` command would look like this:\n\n```\ngit config --global user.name \"voidKandy\"\n```\n\nThis will set your Git username to \"voidKandy\" for all repositories on your machine."
+    "content": "If you are in a branch and want to push your local changes to the remote repository, you can follow these steps:\n\n1. Commit your changes using the command `git commit -m \"Your commit message here\"`.\n2. Push your changes to the remote repository using the command `git push origin <branch name>`. Replace `<branch name>` with the name of the branch you want to push to.\n\nHere's an example of the full command:\n\n```\ngit push origin my-branch\n```\n\nThis will push your changes to the \"my-branch\" branch of the remote repository."
   },
   {
     "role": "user",
-    "content": ""
+    "content": "how would i get the name of my branch?"
   },
   {
     "role": "assistant",
-    "content": "Is there anything else you need help with?"
-  },
-  {
-    "role": "user",
-    "content": "how do i add password?\""
-  },
-  {
-    "role": "assistant",
-    "content": "If you're trying to add a password to your Git account, you can do so by setting up an SSH key. Here are the steps:\n\n1. Generate an SSH key using the following command: \n\n   ```\n   ssh-keygen -t rsa -b 4096 -C \"your_email@example.com\"\n   ```\n\n   Replace \"your_email@example.com\" with your actual email address.\n\n2. Follow the prompts to save the key in the default location.\n\n3. Add the SSH key to your Git account by copying the contents of the public key file (usually `~/.ssh/id_rsa.pub`) and pasting it into the \"SSH keys\" section of your Git account settings.\n\nOnce you've set up your SSH key, you"
+    "content": "To get the name of the branch you are currently on, you can use the command `git branch`. The branch with the `*` next to it is the branch you are currently on. Here's an example:\n\n```\n$ git branch\n  master\n* my-branch\n  another-branch\n```\n\nIn this example, the current branch is \"my-branch\"."
   }
 ]
