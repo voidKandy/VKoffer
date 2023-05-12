@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 require('dotenv').config()
 
 const algorithm = 'aes-256-ctr'
-const secretKey = process.env(ENCRPTION_KEY);
+const secretKey = process.env.ENCRYPTION_KEY;
 
 export const encrypt = text => {
   const iv = crypto.randomBytes(16)
