@@ -1,4 +1,5 @@
 import { Configuration, OpenAIApi } from 'openai';
+import { pushToConversation } from '../utils/convoLogging.js';
 
 const apiKey = process.env.OPEN_AI_API_KEY;
 
@@ -24,6 +25,7 @@ async function createCompletion(messages) {
   
   let response = await res.json();
   response = response.choices[0].message;
+  pushToConversation(response);
 
   return response;
 };

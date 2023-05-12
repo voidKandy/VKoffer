@@ -15,7 +15,8 @@ You now have access to ***vkoffer***!
 Create a `.env` file and define you api key as `OPEN_AI_API_KEY`
 
 ## Language interface
-To open the language interface run `vkoffer convo`
+To open the language interface run `vkoffer lui`
+run terminal commands from the lui by prepending anything with `!`
 
 ## Adding password data and interacting with passwords
 If you use google chrome, export a Passwords.csv file to use any passwords chrome has already stored for you.
@@ -24,6 +25,7 @@ If you use google chrome, export a Passwords.csv file to use any passwords chrom
 
 As of right now there are 5 commands:
 1. `q <string>` where string is the website you want your password to
+2. `k <string>` where string service you want your API key to
 2. `import <path-to-csv>` see above
 3. `add` to manually add data
 4. `remove` to manually remove data by user (WIP)

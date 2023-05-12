@@ -45,7 +45,7 @@ export function cli(args) {
     writeToKeys(); 
   }
   // start conversation
-  else if (operation.command === 'convo') {
+  else if (operation.command === 'lui') {
     Converse(operation.arg1);
   }
   // console.log(operation);

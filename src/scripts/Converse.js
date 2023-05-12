@@ -30,7 +30,11 @@ async function breakIce() {
 
 async function Conversation(sys_prmpt=null, response) {
 
-  let full_prompt = []; 
+  return user_prompt;
+}
+
+async function Converse(sys_prmpt=null) {
+  
 
   let system_prompt;
   if (!sys_prmpt) {
@@ -39,18 +43,10 @@ async function Conversation(sys_prmpt=null, response) {
     system_prompt = sys_prompts[sys_prmpt]
   }
 
-  const user_prompt = {
-    role: "user",
-    content: response
-  };
+  // passing true to start fresh
+  loadConversation(true);
+  pushToConversation(system_prompt);
 
-  full_prompt.push(system_prompt);
-  full_prompt.push(user_prompt);
-
-  return full_prompt;
-}
-
-async function Converse(sys_prmpt=null) {
   console.clear();
   console.log("\n\n");
   centerPrint("+------------------------------+");
@@ -78,8 +74,16 @@ async function Converse(sys_prmpt=null) {
       });
     } 
     else {
-      let full_prompt = await Conversation(sys_prmpt, user_response);
-      let response = await createCompletion(full_prompt);
+
+      const user_prompt = {
+        role: "user",
+        content: user_response
+      };
+
+      pushToConversation(user_prompt);
+
+      const full_convo = loadConversation();
+      let response = await createCompletion(full_convo);
       centerPrint(`${response.content}`);
     }
   }
