@@ -2,22 +2,30 @@ import * as fs from 'fs';
 import { copyToClipboard } from '../utils/clipboardCopy.js';
 import { promptUser } from '../utils/promptUser.js';
 
+
+
 class Prompt {
-  async select(website, data) {
-    const filteredPasswords = data.filter(p => (p.website).indexOf(website) !== -1);
-    if (filteredPasswords.length === 0) {
-      console.log(`No passwords found for ${website}`);
+  async select(keyName, json_data) {
+
+  // console.log(Object.entries(json_data[0]));
+  // console.log((Object.entries(json_data[0])[0][1]));
+  // console.log(keyName);
+    
+  const filteredData = json_data.filter(data => ((Object.entries(data)[0][1]).toLowerCase()).includes(keyName.toLowerCase()));
+    if (filteredData.length === 0) {
+      console.log(`No passwords found for ${keyName}`)
       return null;
-    } 
-    else if (filteredPasswords.length === 1) {
-      return filteredPasswords[0];
     }
-    else {
-      const options = filteredPasswords.map((p, i) => ({ value: p, label: `${p.user}`, site: `${p.website}`}));
-      const selectedOption = await this.selectOption(`Select a user for ${website}:`, options);
-      return selectedOption.value;
+    else if (filteredData.length === 1) {
+      return filteredData[0];
     }
-  }
+    else {                                                                    
+      const options = filteredData.map((data, i) => ({ value: data, label: `${data[(Object.keys(json_data[0])[1])]}` }));
+      // console.log(options);
+      const selectedOption = await this.selectOption(`Select one:`, options);
+      return selectedOption;
+    }
+  };
 
   async selectOption(message, options) {
     console.log(message);
@@ -30,20 +38,23 @@ class Prompt {
       console.log(`Invalid input: ${answer}`);
       return this.selectOption(message, options);
     }
-    return options[optionIndex];
+    return (options[optionIndex])['value'];
+  };
+};
+
+async function queryPasswords(keyName, data=null) {
+  let data_json;
+  if (data === 'k') {
+    data_json = JSON.parse(fs.readFileSync('src/datas/passwords/keys.json', 'utf8'));
+  } else {
+    data_json = JSON.parse(fs.readFileSync('src/datas/passwords/passwords.json', 'utf8'));
   }
-}
-
-async function queryPasswords(website) {
-  const data_json = JSON.parse(fs.readFileSync('src/datas/passwords/passwords.json', 'utf8'));
-  const passwords = data_json.map(d => d.website);
-
   const prompt = new Prompt();
-  const selectedPassword = await prompt.select(website, data_json);
+  const selectedPassword = await prompt.select(keyName, data_json);
   if (selectedPassword) {
-    console.log(`Selected Password for user: ${selectedPassword.user}`)
-    copyToClipboard(selectedPassword.password);
+    console.log(`Selected Password for: ${selectedPassword[Object.keys(data_json[0])[1]]}`);
+    copyToClipboard(selectedPassword[Object.keys(data_json[0])[2]]);
   }
-}
+};
 
 export { queryPasswords };

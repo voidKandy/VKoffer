@@ -22,7 +22,11 @@ export function cli(args) {
   
   // query passwords 
   if (operation.command === 'q') {
-    queryPasswords(operation.arg1);
+    queryPasswords(operation.arg1, operation.arg2);
+  }
+  // query keys
+  if (operation.command === 'k') {
+    queryPasswords(operation.arg1, "k");
   }
   // Import password.csv
   else if (operation.command === 'import') {
