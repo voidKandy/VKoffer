@@ -13,5 +13,8 @@
   },
   "bin": {
     "vkoffer": "./index.js"
+  },
+  "devDependencies": {
+    "supabase": "^1.58.1"
   }
 }
