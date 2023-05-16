@@ -5,6 +5,7 @@
 
 # user convo
 /src/datas/user_messages.json
+/src/datas/repo_messages.json
 
 
 # dependencies
