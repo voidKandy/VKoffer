@@ -1,11 +1,12 @@
 import * as fs from 'fs';
+import { blue, magenta, green, yellow, cyan } from "colorette"
 import { promptUser } from '../utils/promptUser.js';
 import { Configuration, OpenAIApi } from 'openai';
 import { createCompletion } from '../ai-utils/createCompletion.js';
 import { loadConversation, pushToConversation } from "../ai-utils/convoLogging.js";
-import { queryEmbeddings } from "./queryEmbeddings.js";
 import { centerPrint } from "../utils/formatPrints.js";
 import { exec } from 'child_process';
+import { repoChat } from './repoChat.js';
 
 const system_prompts_path = 'src/ai-utils/system_prompts.json';
 const sys_prompts = JSON.parse(
@@ -39,25 +40,35 @@ async function Lui(sys_prmpt=null) {
   }
 
   // passing true to start fresh
-  loadConversation(true);
+  loadConversation({clear: true});
+  loadConversation({clear: true, repo: true});
   pushToConversation(system_prompt);
 
   console.clear();
   console.log("\n\n");
   centerPrint("+------------------------------+");
-  centerPrint("| LANGUAGE INTERFACE INITIATED |");
+  centerPrint(`         | ${green('LANGUAGE INTERFACE INITIATED')} |`);
   centerPrint("+------------------------------+");
   console.log("\n\n");
 
   let conversationActive = true;
 
   while (conversationActive) {
+    let full_convo;
+    let response;
+
     let user_response = await promptUser("");
     if (user_response.toLowerCase() === "bye") {
       conversationActive = false;
     }
+
+    const user_prompt = {
+      role: "user",
+      content: user_response
+    }
+
     // Make terminal commands from interface
-    else if (user_response[0] === "!") {
+    if (user_response[0] === "!") {
       exec(user_response.substring(1, user_response.length), (error, stdout, stderr) => {
         if (error) {
           console.log(`Error: ${error.message}`);
@@ -69,23 +80,20 @@ async function Lui(sys_prmpt=null) {
       });
     } 
     else if (user_response[0] === '~') {
-      const embedding_query = user_response.substring(1, user_response.length);
-      await queryEmbeddings(embedding_query);
-      
+      user_prompt.content = user_response.substring(1, user_response.length);
+      await repoChat(user_prompt);          
+      full_convo = loadConversation({repo: true});
+      // console.log(full_convo)
+      response = await createCompletion(full_convo);
+      centerPrint(`${response.content}`, magenta);
     }
     else {
-
-      const user_prompt = {
-        role: "user",
-        content: user_response
-      };
-
       pushToConversation(user_prompt);
-
-      const full_convo = loadConversation();
-      let response = await createCompletion(full_convo);
-      centerPrint(`${response.content}`);
+      full_convo = loadConversation();
+      response = await createCompletion(full_convo);
+      centerPrint(`${response.content}`, cyan);
     }
+    
   }
 
 }

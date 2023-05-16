@@ -1,45 +1,45 @@
 import * as fs from "fs";
 // path to conversation
 const json_path = 'src/datas/user_messages.json';
+const repo_json_path = `src/datas/repo_messages.json`
 
-export function loadConversation(clear=null) {
- 
-  if (!fs.existsSync(json_path)) {
+export function loadConversation(options = {}) {
+  let conversationPath = options.repo ? repo_json_path : json_path;
+
+  if (!fs.existsSync(conversationPath)) {
     try {
-      fs.writeFileSync(json_path, '[]');
+      fs.writeFileSync(conversationPath, '[]');
     } catch (error) {
       console.error(error);
     }
   };
-  if (clear) {
-    fs.writeFileSync(json_path, '[]');
+
+  if (options.clear) {
+    fs.writeFileSync(conversationPath, '[]');
   } 
+
   const existingData = JSON.parse(
-    fs.readFileSync(json_path, "utf8")
+    fs.readFileSync(conversationPath, "utf8")
   );
-
-
-  return existingData;
-};
-
-export function pushToConversation(content, role=null) {
-    
-  const existingData = loadConversation();
   
+  return existingData;
+}
+
+export function pushToConversation(content, role = null, options = {}) {
+  const conversationPath = options.repo ? repo_json_path : json_path;
+  let existingData = loadConversation(options);
+  // console.log(existingData)
   if (role === null) {
     existingData.push(content);
   } 
   else {
-    existingData.push([
+    existingData.push(
       {
         role: role,
         content: content
       }
-    ]);
+    );
   }
 
-  
-  fs.writeFileSync(json_path, JSON.stringify(existingData, null, 2));
-
-};
-
+  fs.writeFileSync(conversationPath, JSON.stringify(existingData, null, 2));
+}

@@ -6,8 +6,21 @@ require('dotenv').config()
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
 
+const fileNameFromParentID = async(parent_file_id) => { 
+  const { data, error } = await supabase
+    .from('file')
+    .select('*')
+    .eq('id', parent_file_id)
+  
+
+  const filename = data[0].name;
+  const filepath = data[0].path;
+
+
+  return [filename, filepath];
+}
+
 export const queryEmbeddings = async(query) => {
-// console.log(supabase)
   const query_embedding = (await generateEmbedding(query))[0].embedding;
   const { error: matchError, data: fileSections } = await supabase
   .rpc('match_file_sections', {
@@ -17,5 +30,23 @@ export const queryEmbeddings = async(query) => {
       min_content_length: 50,
     }
   );
-  console.log(fileSections, matchError)
-}
+  const contextText = [];
+
+  await Promise.all(fileSections.map((section) => {
+    return fileNameFromParentID(section.parent_file_id)
+      .then(([filename, filepath]) => {
+        let content = section.content.replace(/\n/g, " ");
+        const contextSection = {
+          file: filename,
+          path: filepath,
+          content: content
+        }
+        contextText.push(contextSection);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }));
+  return contextText;
+};
+

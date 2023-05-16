@@ -8,6 +8,7 @@
   "keywords": [],
   "dependencies": {
     "@supabase/supabase-js": "^2.22.0",
+    "colorette": "^2.0.20",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",
     "openai": "^3.2.1"
