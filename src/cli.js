@@ -3,7 +3,8 @@ import { load_csv } from './scripts/csvToJson.js';
 import writeToKeys from './scripts/writeToKeys.js';
 import writeToJson from './scripts/writeToJson.js';
 import removeFromJson from './scripts/removeFromJson.js';
-import { Converse } from './scripts/Converse.js';
+import { Lui } from './ai-utils/LUI.js';
+import { populateEmbeddingsTables } from './ai-utils/embeddingsModule.js';
 
 function parseArguments(args) {
   args.splice(0, 2);
@@ -46,7 +47,10 @@ export function cli(args) {
   }
   // start conversation
   else if (operation.command === 'lui') {
-    Converse(operation.arg1);
+    Lui(operation.arg1);
+  }
+  else if (operation.command === 'walk') {
+    populateEmbeddingsTables(operation.arg1);
   }
   // console.log(operation);
 }

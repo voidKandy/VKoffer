@@ -3,6 +3,7 @@ import { promptUser } from '../utils/promptUser.js';
 import { Configuration, OpenAIApi } from 'openai';
 import { createCompletion } from '../ai-utils/createCompletion.js';
 import { loadConversation, pushToConversation } from "../ai-utils/convoLogging.js";
+import { queryEmbeddings } from "./queryEmbeddings.js";
 import { centerPrint } from "../utils/formatPrints.js";
 import { exec } from 'child_process';
 
@@ -11,7 +12,7 @@ const sys_prompts = JSON.parse(
   fs.readFileSync(system_prompts_path, "utf8")
 );
 
-
+// Program for scripted conversation
 async function breakIce() {
   const icebreaker_path = 'src/datas/icebreakers.txt';
 
@@ -28,13 +29,7 @@ async function breakIce() {
   }
 };
 
-async function Conversation(sys_prmpt=null, response) {
-
-  return user_prompt;
-}
-
-async function Converse(sys_prmpt=null) {
-  
+async function Lui(sys_prmpt=null) {
 
   let system_prompt;
   if (!sys_prmpt) {
@@ -73,6 +68,11 @@ async function Converse(sys_prmpt=null) {
         console.log(stdout);
       });
     } 
+    else if (user_response[0] === '~') {
+      const embedding_query = user_response.substring(1, user_response.length);
+      await queryEmbeddings(embedding_query);
+      
+    }
     else {
 
       const user_prompt = {
@@ -89,5 +89,5 @@ async function Converse(sys_prmpt=null) {
   }
 
 }
-export { Converse };
+export { Lui };
 
