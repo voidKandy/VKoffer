@@ -13,11 +13,17 @@ You now have access to ***vkoffer***!
 
 #### Ensure your openai key is in the project
 Create a `.env` file and define you api key as `OPEN_AI_API_KEY`
+If you want to be able to vector embed your repo's you'll need a supabase URL and Key
+
+#### Embedding your repo
+Just run `vkoffer walk <path/to/repo>` to embed any repo on your local computer
 
 ## Language interface
 To open the language interface run `vkoffer lui`
 
 run terminal commands from the lui by prepending anything with `!`
+
+Ask questions about the currently Vector Embedded repo by prepending with `~`
 
 ## Adding password data and interacting with passwords
 If you use google chrome, export a Passwords.csv file to use any passwords chrome has already stored for you.
