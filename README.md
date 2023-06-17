@@ -11,19 +11,19 @@ After cloning the repo, cd into it and run:
 
 You now have access to ***vkoffer***!
 
-#### Ensure your openai key is in the project
-Create a `.env` file and define you api key as `OPEN_AI_API_KEY`
-If you want to be able to vector embed your repo's you'll need a supabase URL and Key
+#### Setting up .env
+Create a `.env` file and fill out all fields in `.env-example` for full functionality
+The password manager will work without any environment variables, but that's no fun
 
-#### Embedding your repo
-Just run `vkoffer walk <path/to/repo>` to embed any repo on your local computer
+#### Embedding a directory
+Just run `vkoffer walk <path/to/directory>` to recursively embed any text based files in a directory
 
 ## Language interface
 To open the language interface run `vkoffer lui`
 
 run terminal commands from the lui by prepending anything with `!`
 
-Ask questions about the currently Vector Embedded repo by prepending with `~`
+Ask questions about the currently Vector Embedded directory by prepending with `~`
 
 ## Adding password data and interacting with passwords
 If you use google chrome, export a Passwords.csv file to use any passwords chrome has already stored for you.
@@ -39,10 +39,3 @@ As of right now there are 5 commands:
 3. `add` to manually add data
 4. `remove` to manually remove data by user (WIP)
 5. `+key` to add to the special keys.json (More API key features coming soon)
-
- 
-## Planned features
-* Password generator
-* API key favorites quick access
-* More in depth removal
-* Get on command line package manager 🤓
